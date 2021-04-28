@@ -12,8 +12,6 @@ const char *root_topic_publish = "esp/test";
 WiFiClient espClient;
 PubSubClient client(espClient);
 
-char msg[25];
-long count=0;
 
 void callback(char* topic, byte* payload, unsigned int length) {
 	String incoming = "";
@@ -56,6 +54,7 @@ void reconnect() {
 		}
 	}
 }
+
 void setup_wifi(){
 	delay(10);
 	// Nos conectamos a nuestra red Wifi
@@ -75,6 +74,7 @@ void setup_wifi(){
 	Serial.println("Dirección IP: ");
 	Serial.println(WiFi.localIP());
 }
+
 void setup() {
   Serial.begin(115200);
   setup_wifi();
@@ -90,5 +90,4 @@ void loop() {
   }
   client.loop();
 }
-
 
