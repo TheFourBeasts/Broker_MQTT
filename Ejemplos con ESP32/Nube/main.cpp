@@ -7,6 +7,9 @@ const char* password = "clau1963";
 int ledRojo = 13;
 const char* mqtt_server= "node02.myqtthub.com";
 const int mqtt_port = 1883;
+const char* client_id = "lucas.capponi@gmail.com";
+const char* client_user = "lucas_vehiculo";
+const char* client_pass = "vehiculo";
 const char *root_topic_subscribe = "esp/led";
 const char *root_topic_publish = "esp/test";
 WiFiClient espClient;
@@ -38,7 +41,7 @@ void reconnect() {
 	while (!client.connected()) {
 		Serial.print("Intentando conexión Mqtt...");
 		// Intentamos conectar
-		if (client.connect("lucas.capponi@gmail.com", "lucas_vehiculo","vehiculo") ){
+		if (client.connect(client_id, client_user,client_pass) ){
 			Serial.println("Conectado!");
 			// Nos suscribimos
 			if(client.subscribe(root_topic_subscribe)){
@@ -93,7 +96,7 @@ void loop() {
     //	client.publish(root_topic_publish,"Probando...");
     //	delay(300);
   	//}
-	  
+
 	client.loop();
 }
 
